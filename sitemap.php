@@ -63,6 +63,7 @@ class SitemapPlugin extends Plugin
         ksort($routes);
 
         $ignores = (array) $this->config->get('plugins.sitemap.ignores');
+        $changefreq = $this->config->get('plugins.sitemap.changefreq');
 
         foreach ($routes as $route => $path) {
             $page = $pages->get($path);
@@ -72,6 +73,10 @@ class SitemapPlugin extends Plugin
                 $entry->location = $page->permaLink();
                 $entry->lastmod = date('Y-m-d', $page->modified());
 
+                if (isset($changefreq) && $changefreq!='') {
+                    $entry->changefreq = $changefreq;
+                }
+                
                 // optional changefreq & priority that you can set in the page header
                 $header = $page->header();
                 if (isset($header->sitemap['changefreq'])) {
