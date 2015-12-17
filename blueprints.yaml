@@ -38,3 +38,17 @@ form:
         help: "URLs to ignore"
         value_only: true
         placeholder_value: /ignore-this-route
+        
+    changefreq:
+        type: select
+        label: default change frequency
+        default: ''
+        options:
+           '': Use page header
+           always: Always
+           hourly: Hourly
+           daily: Daily
+           weekly: Weekly
+           monthly: Monthly
+           yearly: Yearly
+           never:  Never
